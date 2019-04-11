@@ -8,7 +8,7 @@ package oodproject;
  *@author (Wendell Jenkins)
  * @version1 (3/7/19)
  */
-public class DrSoda implements MainCourse
+public class DrSoda implements Drink
 {
     
     @Override
