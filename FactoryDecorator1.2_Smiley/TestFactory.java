@@ -183,7 +183,7 @@ public class TestFactory
           
           
         case "Chips":
-          System.out.println("Select chips brand: \"l\" for Lays, \"d\" for Doritos, or \"c\" for Cheetos.");
+          System.out.println("Select chips brand: \"l\" for Lays, \"do\" for Doritos, or \"c\" for Cheetos.");
           type = in.next();
           menuID = 1;
           
@@ -231,7 +231,7 @@ public class TestFactory
           
           
         case "Soda":
-          System.out.println("Select soft drink brand: \"d\" for Dr. Pepper, \"p\" for Pepsi, or \"c\" for Coca-Cola.");
+          System.out.println("Select soft drink brand: \"dr\" for Dr. Pepper, \"p\" for Pepsi, or \"c\" for Coca-Cola.");
           type = in.next();
           menuID = 2;
           
