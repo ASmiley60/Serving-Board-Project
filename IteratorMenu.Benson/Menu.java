@@ -18,13 +18,13 @@ public class Menu {
 	
 	private ArrayList<MenuItem> createMenu() {
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-		MenuItem sw = new MenuItem("Sandwiches","Hamburger","Chicken Sandwich","Turkey Sandwich");
-		MenuItem hd = new MenuItem("Hotdogs","Beef Hotdog","Pork Hotdog","Turkey Hotdog");
-		MenuItem sd = new MenuItem("Salads","Caesar Salad","Balsamic Vinegar Salad","House Salad");
-		MenuItem chips = new MenuItem("Chips","Lays","Doritos","Cheetos");
-		MenuItem sides = new MenuItem("Sides","Fries","Celery","Apple Slices");
-		MenuItem soda = new MenuItem("Sodas","Dr. Pepper","Pepsi","Coca-Cola");
-		MenuItem drinks = new MenuItem("Other Drinks","Sweet Tea","Unsweetened Tea","Water");
+		MenuItem sw = new MenuItem("Sandwiches", 3.00, "Hamburger","Chicken Sandwich","Turkey Sandwich");
+		MenuItem hd = new MenuItem("Hotdogs", 2.00, "Beef Hotdog","Pork Hotdog","Turkey Hotdog");
+		MenuItem sd = new MenuItem("Salads", 3.00, "Caesar Salad","Balsamic Vinegar Salad","House Saland");
+		MenuItem chips = new MenuItem("Chips", 1.00, "Lays","Doritos","Cheetos");
+		MenuItem sides = new MenuItem("Sides", 1.00, "Fries","Celery","Apple Slices");
+		MenuItem soda = new MenuItem("Sodas", 1.00, "Dr. Pepper","Pepsi","Coca-Cola");
+		MenuItem drinks = new MenuItem("Other Drinks", 1.00, "Sweet Tea","Unsweetened Tea","Water");
 		
 		menu.add(sw);
 		menu.add(hd);
