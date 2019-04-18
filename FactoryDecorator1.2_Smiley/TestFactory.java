@@ -3,7 +3,7 @@ package oodproject;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 import java.util.Scanner;
 
 //This test file is designed to demo the factory working with the decorator to create the user's food items
@@ -15,9 +15,9 @@ public class TestFactory
     ClassNotFoundException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException 
   {
     Factory factory = Factory.getFactory();
-    Queue<MainCourse> mcList = new LinkedList<>();
-    Queue<MainCourse> snList = new LinkedList<>();
-    Queue<MainCourse> drList = new LinkedList<>();
+    List<MainCourse> mcList = new LinkedList<>();
+    List<MainCourse> snList = new LinkedList<>();
+    List<MainCourse> drList = new LinkedList<>();
     MainCourse item = null;
     
     double cost = 0.0;
@@ -30,6 +30,7 @@ public class TestFactory
     String condiment = ""; //Stores user input on what condiments to add to the item
     int menuID = 0; //Determines which menu the current item gets printed on
     int condimentLimiter = 0; //Limits the number of condiments that can be added
+    boolean hasCondiment = false; //Determines whether to prompt user for condiment choice
     
     while(!ID.equals("d"))
     {
@@ -98,6 +99,7 @@ public class TestFactory
         case "Sand":
           System.out.println("Select sandwich type: \"h\" for hamburger, \"c\" for chicken, or \"t\" for turkey");
           type = in.next();
+          hasCondiment = true;
           
           //Selects the sandwich type
           do
@@ -127,6 +129,7 @@ public class TestFactory
         case "Dog":
           System.out.println("Select hotdog type: \"b\" for beef, \"p\" for pork, or \"t\" for turkey.");
           type = in.next();
+          hasCondiment = true;
           
           //Selects the hotdog type
           do  
@@ -208,7 +211,7 @@ public class TestFactory
                 System.out.println(type + " is not a valid brand of chips. Please try again.");
                 break;
             }
-          } while (!type.matches("l|d|c"));
+          } while (!type.matches("l|do|c"));
           break;
           
         
@@ -256,7 +259,7 @@ public class TestFactory
                 System.out.println(type + " is not a valid brand of soda. Please try again.");
                 break;
             }
-          } while (!type.matches("d|p|c"));
+          } while (!type.matches("dr|p|c"));
           break;
           
         
@@ -266,7 +269,8 @@ public class TestFactory
           menuID = 2;
           
           if(type.equals("y")) item = factory.create("DrTea", "Sweet");
-          else item = factory.create("DrTea");
+          else item = factory.create("DrTea", "Unsweetened");
+          break;
           
         case "Water":
           item = factory.create("DrWater");
@@ -283,11 +287,11 @@ public class TestFactory
           break;
       }
       
-      if (item != null) System.out.println("Select condiments to go with it. Enter 'd' when done.");
+      if (item != null && hasCondiment) System.out.println("Select condiments to go with it. Enter 'd' when done.");
       
       
       //Selects condiments to go with the current item
-      while(!condiment.equals("d") && item != null)
+      while(!condiment.equals("d") && item != null && hasCondiment)
       {
         condiment = in.next();
         switch(condiment)
@@ -321,7 +325,7 @@ public class TestFactory
             break;
             
           case "d":
-            System.out.println("Select another item or enter 'd' for done.");
+            System.out.println("Select another menu item or enter 'd' for done.");
             break;
             
           default:
@@ -332,9 +336,10 @@ public class TestFactory
     	{
         	condiment = "d";
     		System.out.println("Condiment limit has been reached.");
-    		System.out.println("Select another item or enter 'd' for done.");
+    		System.out.println("Select another menu item or enter 'd' for done.");
     	}
       }
+      if(!hasCondiment) System.out.println("Select another menu item or enter 'd' for done.");
       
       if(menuID == 0) mcList.add(item);
       if(menuID == 1) snList.add(item);
@@ -342,6 +347,7 @@ public class TestFactory
       
       item = null;
       condiment = "";
+      hasCondiment = false;
       menuID = 0;
       condimentLimiter = 0;
     }
@@ -350,30 +356,33 @@ public class TestFactory
     //Prints out all the items in the cart
     System.out.println("-----Main Course Items-----\n");
     
-    while(!mcList.isEmpty()) 
+    for(int i = 0; i < mcList.size(); i++) 
     {
-      item = mcList.poll();
-      System.out.println(item.getDescription() + "     cost: $" + df.format(item.getCost()) + "\n");
+	  item = mcList.get(i);
+	  System.out.println(i+1 + ": " + item.getDescription() + "     cost: $" + df.format(item.getCost()) + "\n");
       cost += item.getCost();
-    }
+  	}
     
     System.out.println("--------Snack Items--------\n");
     
-    while(!snList.isEmpty()) 
+    for(int i = 0; i < snList.size(); i++) 
     {
 
-      item = snList.poll();
-      System.out.println(item.getDescription() + "     cost: $" + df.format(item.getCost()) + "\n");
+      item = snList.get(i);
+      System.out.println(i+1 + ": " + item.getDescription() + "     cost: $" + df.format(item.getCost()) + "\n");
       cost += item.getCost();
     }
     
     System.out.println("--------Drink Items--------\n");
     
-    while(!drList.isEmpty()) 
+    for(int i = 0; i < drList.size(); i++) 
     {
-      item = drList.poll();
+      item = drList.get(i);
+      System.out.println(i+1 + ": " + item.getDescription() + "     cost: $" + df.format(item.getCost()) + "\n");
       cost += item.getCost();
     }
+    
+    System.out.println("---------------------------\n");
     
     System.out.println("Total Cost: $" + df.format(cost));
   }
