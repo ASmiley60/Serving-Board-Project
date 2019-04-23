@@ -5,12 +5,26 @@
  */
 package System;
 
+import java.util.Calendar;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Iterator;
 /**
  *
  * @author wj01254
  */
 public class Cafe_Menu_System extends javax.swing.JFrame {
-
+    //Creating arrays for each of the choosable menu categories
+    //Global variables
+double [] Entree = new double[4];
+double [] Drink = new double[4]; 
+double [] Snack = new double [3];
+double [] Cost = new double [3];
+double [] i = new double [11];
+double [] total = new double[3];
+//double [] Combo = new double [3];
+//make a check COMBO box that will appear if an Entree,Drink and Snack are chosen
     /**
      * Creates new form Cafe_Menu_System
      */
@@ -29,44 +43,44 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ReceiptArea = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         Entree1_Checkbox = new javax.swing.JCheckBox();
-        Entree2_Checkbox = new javax.swing.JCheckBox();
         Entree3_Checkbox = new javax.swing.JCheckBox();
         Entree4_Checkbox = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
-        Entree2_TextField = new javax.swing.JTextField();
-        Entree1_TextField = new javax.swing.JTextField();
-        Entree3_TextField = new javax.swing.JTextField();
-        Entree4_TextField = new javax.swing.JTextField();
+        Entree2 = new javax.swing.JTextField();
+        Entree1 = new javax.swing.JTextField();
+        Entree3 = new javax.swing.JTextField();
+        Entree4 = new javax.swing.JTextField();
+        Entree2_Checkbox = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         Cost_of_Entrees = new javax.swing.JLabel();
         Cost_of_Snacks = new javax.swing.JLabel();
         Cost_of_Drinks = new javax.swing.JLabel();
-        Cost1_TextField = new javax.swing.JTextField();
-        Cost2_TextField = new javax.swing.JTextField();
-        Cost3_Textfield = new javax.swing.JTextField();
+        Cost1 = new javax.swing.JTextField();
+        Cost2 = new javax.swing.JTextField();
+        Cost3 = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         Snack1_Checkbox = new javax.swing.JCheckBox();
         Snack2_Checkbox = new javax.swing.JCheckBox();
         Snack3_Checkbox = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
-        Snack1_TextField = new javax.swing.JTextField();
-        Snack2_TextField = new javax.swing.JTextField();
-        Snack3_Textfield = new javax.swing.JTextField();
+        Snack1 = new javax.swing.JTextField();
+        Snack2 = new javax.swing.JTextField();
+        Snack3 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         Drink1_Checkbox = new javax.swing.JCheckBox();
-        Drink2_Checkbox = new javax.swing.JCheckBox();
         Drink3_Checkbox = new javax.swing.JCheckBox();
         Drink4_Checkbox = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
-        Drink3_TextField = new javax.swing.JTextField();
-        Drink2_TextField = new javax.swing.JTextField();
-        Drink4_TextField = new javax.swing.JTextField();
-        Drink1_TextField = new javax.swing.JTextField();
+        Drink3 = new javax.swing.JTextField();
+        Drink2 = new javax.swing.JTextField();
+        Drink4 = new javax.swing.JTextField();
+        Drink1 = new javax.swing.JTextField();
+        Drink2_Checkbox = new javax.swing.JCheckBox();
         jPanel5 = new javax.swing.JPanel();
         Totalbtn = new javax.swing.JButton();
         Recieptbtn = new javax.swing.JButton();
@@ -76,27 +90,28 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
         Tax = new javax.swing.JLabel();
         SubTotal = new javax.swing.JLabel();
         Totallabel = new javax.swing.JLabel();
-        Tax_Textfield = new javax.swing.JTextField();
-        Subtotal_Textfield = new javax.swing.JTextField();
-        Total_TextField = new javax.swing.JTextField();
+        Taxe = new javax.swing.JTextField();
+        Subtotal = new javax.swing.JTextField();
+        Totals = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        ReceiptArea.setEditable(false);
+        ReceiptArea.setColumns(20);
+        ReceiptArea.setFont(new java.awt.Font("Times New Roman", 1, 26)); // NOI18N
+        ReceiptArea.setRows(5);
+        jScrollPane1.setViewportView(ReceiptArea);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +121,7 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 490, 620));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 140, 580, 620));
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
 
@@ -136,39 +151,97 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
 
         Entree1_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Entree1_Checkbox.setText("Entree1");
-
-        Entree2_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Entree2_Checkbox.setText("Entree2");
+        Entree1_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Entree1_CheckboxMouseClicked(evt);
+            }
+        });
+        Entree1_Checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Entree1_CheckboxActionPerformed(evt);
+            }
+        });
 
         Entree3_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Entree3_Checkbox.setText("Entree3");
+        Entree3_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Entree3_CheckboxMouseClicked(evt);
+            }
+        });
+        Entree3_Checkbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Entree3_CheckboxActionPerformed(evt);
+            }
+        });
 
         Entree4_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Entree4_Checkbox.setText("Entree4");
+        Entree4_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Entree4_CheckboxMouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 44)); // NOI18N
         jLabel5.setText("Entrees");
 
-        Entree2_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Entree2_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Entree2_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-
-        Entree1_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Entree1_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Entree1_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-
-        Entree3_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Entree3_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Entree3_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        Entree3_TextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Entree3_TextFieldActionPerformed(evt);
+        Entree2.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Entree2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Entree2.setText("0");
+        Entree2.setToolTipText("");
+        Entree2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Entree2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Entree2MouseClicked(evt);
             }
         });
 
-        Entree4_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Entree4_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Entree4_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Entree1.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Entree1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Entree1.setText("0");
+        Entree1.setToolTipText("");
+        Entree1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Entree1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Entree1MouseClicked(evt);
+            }
+        });
+
+        Entree3.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Entree3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Entree3.setText("0");
+        Entree3.setToolTipText("");
+        Entree3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Entree3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Entree3MouseClicked(evt);
+            }
+        });
+        Entree3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Entree3ActionPerformed(evt);
+            }
+        });
+
+        Entree4.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Entree4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Entree4.setText("0");
+        Entree4.setToolTipText("");
+        Entree4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Entree4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Entree4MouseClicked(evt);
+            }
+        });
+
+        Entree2_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Entree2_Checkbox.setText("Entree2");
+        Entree2_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Entree2_CheckboxMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -183,19 +256,19 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(Entree1_Checkbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                                .addComponent(Entree1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Entree3_Checkbox)
                                     .addComponent(Entree4_Checkbox)
                                     .addComponent(Entree2_Checkbox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Entree3_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Entree4_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Entree2_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(Entree1_Checkbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Entree1_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Entree3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Entree4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Entree2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(33, 33, 33))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -207,21 +280,23 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Entree2_TextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Entree1_Checkbox)
-                                    .addComponent(Entree1_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(24, 24, 24)
-                                .addComponent(Entree2_Checkbox)))
-                        .addGap(26, 26, 26)
+                                    .addComponent(Entree1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(87, 87, 87))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Entree2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Entree2_Checkbox))
+                                .addGap(26, 26, 26)))
                         .addComponent(Entree3_Checkbox))
-                    .addComponent(Entree3_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(Entree3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Entree4_Checkbox)
-                    .addComponent(Entree4_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58))
+                    .addComponent(Entree4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 370, 340));
@@ -237,17 +312,32 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
         Cost_of_Drinks.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Cost_of_Drinks.setText("Cost of Drinks");
 
-        Cost1_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Cost1_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Cost1_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Cost1.setEditable(false);
+        Cost1.setBackground(new java.awt.Color(204, 204, 204));
+        Cost1.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Cost1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Cost1.setText("0");
+        Cost1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        Cost1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cost1ActionPerformed(evt);
+            }
+        });
 
-        Cost2_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Cost2_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Cost2_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Cost2.setEditable(false);
+        Cost2.setBackground(new java.awt.Color(204, 204, 204));
+        Cost2.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Cost2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Cost2.setText("0");
+        Cost2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        Cost3_Textfield.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Cost3_Textfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Cost3_Textfield.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Cost3.setEditable(false);
+        Cost3.setBackground(new java.awt.Color(204, 204, 204));
+        Cost3.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Cost3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Cost3.setText("0");
+        Cost3.setToolTipText("");
+        Cost3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -259,15 +349,15 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(Cost_of_Entrees)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                        .addComponent(Cost1_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Cost1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(Cost_of_Drinks)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Cost3_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Cost3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(Cost_of_Snacks)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Cost2_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Cost2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -276,14 +366,14 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cost_of_Entrees)
-                    .addComponent(Cost1_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cost1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Cost2_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cost2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Cost_of_Snacks))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Cost3_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cost3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Cost_of_Drinks))
                 .addGap(11, 11, 11))
         );
@@ -294,28 +384,61 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
 
         Snack1_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Snack1_Checkbox.setText("Snack 1");
+        Snack1_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Snack1_CheckboxMouseClicked(evt);
+            }
+        });
 
         Snack2_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Snack2_Checkbox.setText("Snack 2");
+        Snack2_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Snack2_CheckboxMouseClicked(evt);
+            }
+        });
 
         Snack3_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Snack3_Checkbox.setText("Snack 3");
+        Snack3_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Snack3_CheckboxMouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel6.setText("Snacks");
 
-        Snack1_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Snack1_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Snack1_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        Snack1_TextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        Snack1.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Snack1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Snack1.setText("0");
+        Snack1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Snack1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        Snack1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Snack1MouseClicked(evt);
+            }
+        });
 
-        Snack2_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Snack2_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Snack2_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Snack2.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Snack2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Snack2.setText("0");
+        Snack2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Snack2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Snack2MouseClicked(evt);
+            }
+        });
 
-        Snack3_Textfield.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Snack3_Textfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Snack3_Textfield.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Snack3.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Snack3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Snack3.setText("0");
+        Snack3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Snack3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Snack3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -327,17 +450,17 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(Snack3_Checkbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Snack3_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Snack3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(Snack2_Checkbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Snack2_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Snack2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Snack1_Checkbox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addComponent(Snack1_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Snack1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -346,16 +469,16 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Snack1_Checkbox)
-                    .addComponent(Snack1_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Snack1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Snack1_Checkbox))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Snack2_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Snack2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Snack2_Checkbox))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Snack3_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Snack3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Snack3_Checkbox))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
@@ -365,41 +488,88 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
         Drink1_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Drink1_Checkbox.setSelected(true);
         Drink1_Checkbox.setText("Drink 1");
+        Drink1_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Drink1_CheckboxMouseClicked(evt);
+            }
+        });
         Drink1_Checkbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Drink1_CheckboxActionPerformed(evt);
             }
         });
 
-        Drink2_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Drink2_Checkbox.setText("Drink 2");
-
         Drink3_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Drink3_Checkbox.setText("Drink 3");
+        Drink3_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Drink3_CheckboxMouseClicked(evt);
+            }
+        });
 
         Drink4_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Drink4_Checkbox.setText("Drink 4");
+        Drink4_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Drink4_CheckboxMouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel7.setText("Drinks");
 
-        Drink3_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Drink3_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Drink3_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Drink3.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Drink3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Drink3.setText("0");
+        Drink3.setToolTipText("");
+        Drink3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Drink3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Drink3MouseClicked(evt);
+            }
+        });
 
-        Drink2_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Drink2_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Drink2_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Drink2.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Drink2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Drink2.setText("0");
+        Drink2.setToolTipText("");
+        Drink2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Drink2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Drink2MouseClicked(evt);
+            }
+        });
 
-        Drink4_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Drink4_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Drink4_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Drink4.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Drink4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Drink4.setText("0");
+        Drink4.setToolTipText("");
+        Drink4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Drink4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Drink4MouseClicked(evt);
+            }
+        });
 
-        Drink1_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Drink1_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Drink1_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Drink1.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Drink1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Drink1.setText("0");
+        Drink1.setToolTipText("");
+        Drink1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Drink1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Drink1MouseClicked(evt);
+            }
+        });
+
+        Drink2_Checkbox.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Drink2_Checkbox.setText("Drink 2");
+        Drink2_Checkbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Drink2_CheckboxMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -409,17 +579,17 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Drink4_Checkbox)
-                            .addComponent(Drink3_Checkbox)
-                            .addComponent(Drink2_Checkbox)
-                            .addComponent(Drink1_Checkbox))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Drink4_Checkbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Drink3_Checkbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Drink2_Checkbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Drink1_Checkbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Drink1_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Drink4_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Drink3_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Drink2_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Drink1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Drink4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Drink3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Drink2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -432,20 +602,20 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Drink1_Checkbox)
-                    .addComponent(Drink1_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Drink1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Drink1_Checkbox))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Drink2_Checkbox)
-                    .addComponent(Drink2_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Drink2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Drink2_Checkbox))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Drink3_Checkbox)
-                    .addComponent(Drink3_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Drink3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Drink4_Checkbox)
-                    .addComponent(Drink4_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Drink4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 35, Short.MAX_VALUE))
         );
 
@@ -479,6 +649,11 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
 
         Exitbtn.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Exitbtn.setText("Exit");
+        Exitbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -520,17 +695,31 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
         Totallabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         Totallabel.setText("Total");
 
-        Tax_Textfield.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Tax_Textfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Tax_Textfield.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Taxe.setEditable(false);
+        Taxe.setBackground(new java.awt.Color(204, 204, 204));
+        Taxe.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Taxe.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Taxe.setText("0");
+        Taxe.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        Taxe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TaxeActionPerformed(evt);
+            }
+        });
 
-        Subtotal_Textfield.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Subtotal_Textfield.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Subtotal_Textfield.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Subtotal.setEditable(false);
+        Subtotal.setBackground(new java.awt.Color(204, 204, 204));
+        Subtotal.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Subtotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Subtotal.setText("0");
+        Subtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        Total_TextField.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
-        Total_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Total_TextField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        Totals.setEditable(false);
+        Totals.setBackground(new java.awt.Color(204, 204, 204));
+        Totals.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        Totals.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Totals.setText("0");
+        Totals.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -542,15 +731,15 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(Tax)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Tax_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Taxe, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(Totallabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Total_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Totals, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(SubTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                        .addComponent(Subtotal_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -559,59 +748,564 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Tax)
-                    .addComponent(Tax_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Taxe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Subtotal_Textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Subtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SubTotal))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(Total_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Totals, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Totallabel))
                 .addGap(11, 11, 11))
         );
 
         getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 590, 330, -1));
 
+        jButton1.setText("Show Menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 780, 150, 70));
+
+        jToggleButton1.setText("jToggleButton1");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 780, 150, 70));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TotalbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalbtnActionPerformed
         // TODO add your handling code here:
+        total[0] = Double.parseDouble(Cost1.getText());
+        total[1] = Double.parseDouble(Cost2.getText());
+        total[2] = Double.parseDouble(Cost3.getText());
+        
+        double cTotal1 = (total[0] + total[1] + total[2]);
+        
+        String iTaxTotal = String.format("%.2f", cTotal1/100);
+        Taxe.setText(iTaxTotal);
+        
+        double subTotal = (cTotal1);
+        String isubTotal = String.format("%.2f", subTotal);
+        Subtotal.setText(isubTotal);
+        
+        double allTotal = (cTotal1);
+        String iTotal = String.format("%.2f", allTotal + (allTotal/100));
+        Totals.setText(iTotal);
     }//GEN-LAST:event_TotalbtnActionPerformed
+
+    private void Entree3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Entree3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Entree3ActionPerformed
+
+    private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
+     //Code for the Reset button. Reset all the values to null
+     // If the value of the text field = 0 or null then dont show it on the receipt
+     Snack3.setText("0");
+     Snack3_Checkbox.setSelected(false); 
+     Snack2.setText("0");
+     Snack2_Checkbox.setSelected(false);
+     Snack1.setText("0");
+     Snack1_Checkbox.setSelected(false); //Empty the snacks
+     
+     Drink4.setText("0");
+     Drink4_Checkbox.setSelected(false);
+     Drink3.setText("0");
+     Drink3_Checkbox.setSelected(false);
+     Drink2.setText("0");
+     Drink2_Checkbox.setSelected(false);
+     Drink1.setText("0");
+     Drink1_Checkbox.setSelected(false); //Empty the drinks
+     
+     Entree4.setText("0");
+     Entree4_Checkbox.setSelected(false);
+     Entree3.setText("0");
+     Entree3_Checkbox.setSelected(false);
+     Entree2.setText("0");
+     Entree2_Checkbox.setSelected(false);
+     Entree1.setText("0");
+     Entree1_Checkbox.setSelected(false); //Empty the Entrees
+     
+     ReceiptArea.setText(null); //Empty the Receipt
+     
+     Taxe.setText("0");
+     Subtotal.setText("0");
+     Totals.setText("0");
+     
+     Cost1.setText("0");
+     Cost2.setText("0");
+     Cost3.setText("0");
+     
+    }//GEN-LAST:event_ResetbtnActionPerformed
+
+    private void RecieptbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecieptbtnActionPerformed
+        //CREATE A FOR LOOP FOR THESE!!!! MUCH CLEANER
+        Entree[0] = Double.parseDouble(Entree1.getText());
+        Entree[1] = Double.parseDouble(Entree2.getText());
+        Entree[2] = Double.parseDouble(Entree3.getText());
+        Entree[3] = Double.parseDouble(Entree4.getText());
+        
+        Drink[0] = Double.parseDouble(Drink1.getText());
+        Drink[1] = Double.parseDouble(Drink2.getText());
+        Drink[2] = Double.parseDouble(Drink3.getText());
+        Drink[3] = Double.parseDouble(Drink4.getText());
+        
+        Snack[0] = Double.parseDouble(Snack1.getText());
+        Snack[1] = Double.parseDouble(Snack2.getText());
+        Snack[2] = Double.parseDouble(Snack3.getText());
+        
+        Cost[0] = Double.parseDouble(Taxe.getText());
+        Cost[1] = Double.parseDouble(Subtotal.getText());
+        Cost[2] = Double.parseDouble(Totals.getText());
+       
+       //What about a combo meal? If specific items are chosen, then add that up as a combo. Choose which options make up combo
+      //Combo[0] = Double.parseDouble(Entree1_TextField.getText()) + Double.parseDouble(Drink1_TextField.getText()) + Double.parseDouble(Snack1_TextField.getText());
+      //Combo[1] = Double.parseDouble(Entree2_TextField.getText()) + Double.parseDouble(Drink2_TextField.getText()) + Double.parseDouble(Snack2_TextField.getText());\
+      //Combo[2] = Double.parseDouble(Entree3_TextField.getText()) + Double.parseDouble(Drink3_TextField.getText()) + Double.parseDouble(Snack3_TextField.getText());
+   //If there is a null value inside one of the fields, it throws an error. All Fields must be populated. Get on that
+   //========================================================
+   // Reference number and Date Code
+   int refs = 1325 + (int) (Math.random() * 4238);
+   //========================================================
+        Calendar timer = Calendar.getInstance();
+        timer.getTime();
+        SimpleDateFormat tTime = new SimpleDateFormat("HH:mm:ss");
+        tTime.format(timer.getTime());
+        SimpleDateFormat Tdate = new SimpleDateFormat("dd-MM-yyy");
+        Tdate.format(timer.getTime());
+   //=========================================================
+   //Change the Title later
+   ReceiptArea.append(" \t\n Cafe Managment Systems: \n" +
+     "Reference: \t\t " + refs +
+             "\n =========================" +
+     "\nEntree 1:\t\t " + Entree[0] +
+     "\nEntree 2:\t\t " + Entree[1] +
+     "\nEntree 3:\t\t " + Entree[2] +
+     "\nEntree 4:\t\t " + Entree[3] + 
+             "\n =========================" +
+     "\nDrink 1:\t\t " + Drink[0] +
+     "\nDrink 2:\t\t " + Drink[1] +
+     "\nDrink 3:\t\t " + Drink[2] +
+     "\nDrink 4:\t\t " + Drink[3] +
+                "\n =========================" +
+     "\nSnack 1:\t\t " + Snack[0] +
+     "\nSnack 2:\t\t " + Snack[1] +
+     "\nSnack 3:\t\t " + Snack[2] +
+   //  "\n Combo: \t\t " + Combo[0] +
+                "\n =========================" +
+            "\nTax:\t\t " +  "$" + Cost[0] +
+           "\nSubtotal:\t\t " +  "$" + Cost[1] +
+           "\nTotal:\t\t " +  "$" + Cost[2] +
+                "\n =========================" +
+      "\nDate: " + Tdate.format(timer.getTime()) +
+      "\nTime: " + tTime.format(timer.getTime()) +
+   "\n\n Thank You and have a Blessed Day!"); 
+    }//GEN-LAST:event_RecieptbtnActionPerformed
+
+    private void ExitbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitbtnActionPerformed
+        // Exit out of the menu
+        System.exit(0);
+    }//GEN-LAST:event_ExitbtnActionPerformed
 
     private void Drink1_CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Drink1_CheckboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Drink1_CheckboxActionPerformed
 
-    private void Entree3_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Entree3_TextFieldActionPerformed
+    private void TaxeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Entree3_TextFieldActionPerformed
+    }//GEN-LAST:event_TaxeActionPerformed
 
-    private void ResetbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetbtnActionPerformed
-     Cost1_TextField.setText(null);
-     Cost2_TextField.setText(null);
-     Cost3_Textfield.setText(null);
-     Total_TextField.setText(null);
-     Subtotal_Textfield.setText(null);
-     Tax_Textfield.setText(null);
-     Snack3_Textfield.setText(null);
-     Snack2_TextField.setText(null);
-     Snack1_TextField.setText(null);
-     Drink4_TextField.setText(null);
-     Drink3_TextField.setText(null);
-     Drink2_TextField.setText(null);
-     Drink1_TextField.setText(null);
-     Entree4_TextField.setText(null);
-     Entree3_TextField.setText(null);
-     Entree2_TextField.setText(null);
-     Entree1_TextField.setText(null);
-     
-    }//GEN-LAST:event_ResetbtnActionPerformed
+    private void Entree1_CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Entree1_CheckboxActionPerformed
+    //  double cEntree1 = Double.parseDouble(s);
+    }//GEN-LAST:event_Entree1_CheckboxActionPerformed
 
-    private void RecieptbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecieptbtnActionPerformed
+    private void Entree3_CheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Entree3_CheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RecieptbtnActionPerformed
+    }//GEN-LAST:event_Entree3_CheckboxActionPerformed
+
+    private void Entree1_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Entree1_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cEntree1 = Double.parseDouble(Cost1.getText());
+        double First = Double.parseDouble(Entree1.getText());
+        double iEntree1 = 1.99; // Making up some arbitrary value for this
+        
+        if(Entree1_Checkbox.isSelected())
+        {
+             i[0] = (First * iEntree1) + cEntree1;
+             String pE = String.format("%.2f", i[0]);
+             Cost1.setText(pE);
+        }
+        else{
+            i[0] = (First * iEntree1) - cEntree1;
+            String pE = String.format("%.2f", i[0]);
+             Cost1.setText(pE);
+        }
+    }//GEN-LAST:event_Entree1_CheckboxMouseClicked
+
+    private void Entree2_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Entree2_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cEntree2 = Double.parseDouble(Cost1.getText());
+        double Second = Double.parseDouble(Entree2.getText());
+        double iEntree2 = 1.23; // Making up some arbitrary value for this
+        
+        if(Entree2_Checkbox.isSelected())
+        {
+             i[1] = (Second * iEntree2) + cEntree2;
+             String pE = String.format("%.2f", i[1]);
+             Cost1.setText(pE);
+        }
+         else{
+            i[1] = (Second * iEntree2) - cEntree2;
+            String pE = String.format("%.2f", i[1]);
+             Cost1.setText(pE);
+        }
+    }//GEN-LAST:event_Entree2_CheckboxMouseClicked
+
+    private void Entree3_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Entree3_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cEntree3 = Double.parseDouble(Cost1.getText());
+        double Third = Double.parseDouble(Entree3.getText());
+        double iEntree3 = 1.50; // Making up some arbitrary value for this
+        
+        if(Entree3_Checkbox.isSelected())
+        {
+             i[2] = (Third * iEntree3) + cEntree3;
+             String pE = String.format("%.2f", i[2]);
+             Cost1.setText(pE);
+        }
+         else{
+            i[2] = (Third * iEntree3) - cEntree3;
+            String pE = String.format("%.2f", i[2]);
+             Cost1.setText(pE);
+        }
+    }//GEN-LAST:event_Entree3_CheckboxMouseClicked
+
+    private void Entree4_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Entree4_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cEntree4 = Double.parseDouble(Cost1.getText());
+        double Fourth = Double.parseDouble(Entree4.getText());
+        double iEntree4 = 1.65; // Making up some arbitrary value for this
+        
+        if(Entree4_Checkbox.isSelected())
+        {
+             i[3] = (Fourth * iEntree4) + cEntree4;
+             String pE = String.format("%.2f", i[3]);
+             Cost1.setText(pE);
+        }
+         else{
+            i[3] = (Fourth * iEntree4) - cEntree4;
+            String pE = String.format("%.2f", i[3]);
+             Cost1.setText(pE);
+        }
+    }//GEN-LAST:event_Entree4_CheckboxMouseClicked
+
+    private void Drink1_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Drink1_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cDrink1 = Double.parseDouble(Cost3.getText());
+        double First = Double.parseDouble(Drink1.getText());
+        double iDrink1 = .99; // Making up some arbitrary value for this
+        
+        if(Drink1_Checkbox.isSelected())
+        {
+             i[4] = (First * iDrink1) + cDrink1;
+             String pE = String.format("%.2f", i[4]);
+             Cost3.setText(pE);
+        }
+         else{
+            i[4] = (First * iDrink1) - cDrink1;
+            String pE = String.format("%.2f", i[4]);
+             Cost3.setText(pE);
+        }
+    }//GEN-LAST:event_Drink1_CheckboxMouseClicked
+
+    private void Drink2_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Drink2_CheckboxMouseClicked
+        // TODO add your handling code here:
+          double cDrink2 = Double.parseDouble(Cost3.getText());
+        double Second = Double.parseDouble(Drink2.getText());
+        double iDrink2 = .99; // Making up some arbitrary value for this
+        
+        if(Drink2_Checkbox.isSelected())
+        {
+             i[5] = (Second * iDrink2) + cDrink2;
+             String pE = String.format("%.2f", i[5]);
+             Cost3.setText(pE);
+        }
+         else{
+            i[5] = (Second * iDrink2) - cDrink2;
+            String pE = String.format("%.2f", i[5]);
+             Cost3.setText(pE);
+        }
+    }//GEN-LAST:event_Drink2_CheckboxMouseClicked
+
+    private void Drink3_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Drink3_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cDrink3 = Double.parseDouble(Cost3.getText());
+        double Third = Double.parseDouble(Drink3.getText());
+        double iDrink3 = .99; // Making up some arbitrary value for this
+        
+        if(Drink3_Checkbox.isSelected())
+        {
+             i[6] = (Third * iDrink3) + cDrink3;
+             String pE = String.format("%.2f", i[6]);
+             Cost3.setText(pE);
+        }
+         else{
+            i[6] = (Third * iDrink3) - cDrink3;
+            String pE = String.format("%.2f", i[6]);
+             Cost3.setText(pE);
+        }
+    }//GEN-LAST:event_Drink3_CheckboxMouseClicked
+
+    private void Drink4_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Drink4_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cDrink4 = Double.parseDouble(Cost3.getText());
+        double Fourth = Double.parseDouble(Drink4.getText());
+        double iDrink4 = .99; // Making up some arbitrary value for this
+        
+        if(Drink1_Checkbox.isSelected())
+        {
+             i[7] = (Fourth * iDrink4) + cDrink4;
+             String pE = String.format("%.2f", i[7]);
+             Cost3.setText(pE);
+        }
+         else{
+            i[7] = (Fourth * iDrink4) - cDrink4;
+            String pE = String.format("%.2f", i[7]);
+             Cost3.setText(pE);
+        }
+    }//GEN-LAST:event_Drink4_CheckboxMouseClicked
+
+    private void Snack1_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Snack1_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cSnack1 = Double.parseDouble(Cost2.getText());
+        double First = Double.parseDouble(Snack1.getText());
+        double iSnack1 = 2.00; // Making up some arbitrary value for this
+        
+        if(Snack1_Checkbox.isSelected())
+        {
+             i[8] = (First * iSnack1) + cSnack1;
+             String pE = String.format("%.2f", i[8]);
+             Cost2.setText(pE);
+        }
+         else{
+            i[8] = (First * iSnack1) - cSnack1;
+            String pE = String.format("%.2f", i[8]);
+             Cost2.setText(pE);
+        }
+    }//GEN-LAST:event_Snack1_CheckboxMouseClicked
+
+    private void Snack2_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Snack2_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cSnack2 = Double.parseDouble(Cost2.getText());
+        double Second = Double.parseDouble(Snack2.getText());
+        double iSnack2 = 2.10; // Making up some arbitrary value for this
+        
+        if(Snack2_Checkbox.isSelected())
+        {
+             i[9] = (Second * iSnack2) + cSnack2;
+             String pE = String.format("%.2f", i[9]);
+             Cost2.setText(pE);
+        }
+         else{
+            i[9] = (Second * iSnack2) - cSnack2;
+            String pE = String.format("%.2f", i[9]);
+             Cost2.setText(pE);
+        }
+    }//GEN-LAST:event_Snack2_CheckboxMouseClicked
+
+    private void Snack3_CheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Snack3_CheckboxMouseClicked
+        // TODO add your handling code here:
+        double cSnack3 = Double.parseDouble(Cost2.getText());
+        double Third = Double.parseDouble(Snack3.getText());
+        double iSnack3 = 2.30; // Making up some arbitrary value for this
+
+        if(Snack3_Checkbox.isSelected())
+        {
+            i[10] = (Third * iSnack3) + cSnack3;
+            String pE = String.format("%.2f", i[10]);
+            Cost2.setText(pE);
+        }
+        else{
+            i[10] = (Third * iSnack3) - cSnack3;
+            String pE = String.format("%.2f", i[10]);
+            Cost2.setText(pE);
+        }
+    }//GEN-LAST:event_Snack3_CheckboxMouseClicked
+
+    private void Entree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Entree1MouseClicked
+        // TODO add your handling code here:
+        Entree1.setText(null);
+    }//GEN-LAST:event_Entree1MouseClicked
+
+    private void Entree2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Entree2MouseClicked
+        // TODO add your handling code here:
+        Entree2.setText(null);
+    }//GEN-LAST:event_Entree2MouseClicked
+
+    private void Entree3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Entree3MouseClicked
+        // TODO add your handling code here:
+        Entree3.setText(null);
+    }//GEN-LAST:event_Entree3MouseClicked
+
+    private void Entree4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Entree4MouseClicked
+        // TODO add your handling code here:
+        Entree4.setText(null);
+    }//GEN-LAST:event_Entree4MouseClicked
+
+    private void Drink1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Drink1MouseClicked
+        // TODO add your handling code here:
+        Drink1.setText(null);
+    }//GEN-LAST:event_Drink1MouseClicked
+
+    private void Drink2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Drink2MouseClicked
+        // TODO add your handling code here:
+        Drink2.setText(null);
+    }//GEN-LAST:event_Drink2MouseClicked
+
+    private void Drink3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Drink3MouseClicked
+        // TODO add your handling code here:
+        Drink3.setText(null);
+    }//GEN-LAST:event_Drink3MouseClicked
+
+    private void Drink4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Drink4MouseClicked
+        // TODO add your handling code here:
+        Drink4.setText(null);
+    }//GEN-LAST:event_Drink4MouseClicked
+
+    private void Snack1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Snack1MouseClicked
+        // TODO add your handling code here:
+        Snack1.setText(null);
+    }//GEN-LAST:event_Snack1MouseClicked
+
+    private void Snack2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Snack2MouseClicked
+        // TODO add your handling code here:
+        Snack2.setText(null);
+    }//GEN-LAST:event_Snack2MouseClicked
+
+    private void Snack3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Snack3MouseClicked
+        // TODO add your handling code here:
+        Snack3.setText(null);
+    }//GEN-LAST:event_Snack3MouseClicked
+
+    private void Cost1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cost1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cost1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        DecimalFormat df = new DecimalFormat("0.00");
+		ArrayList<MenuItem> k = new ArrayList<MenuItem>();
+		
+		Menu menu = new Menu(k);
+		Iterator<MenuItem> it = menu.createIterator();
+		
+		while (it.hasNext()) {
+			MenuItem m = it.next();
+			ReceiptArea.append("----- " + m.getType() + ": $" + df.format(m.getPrice()) + " -----\n");
+			m.listTops();
+			ReceiptArea.append("\n\n");
+		}
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    class MenuItem {
+	String type;
+	double price;
+	ArrayList<String> tops = new ArrayList<String>();
+	
+	
+	public MenuItem(String type, double price, String top1, String top2, String top3) {
+		this.type = type;
+		this.price = price;
+		tops.add(top1);
+		tops.add(top2);
+		tops.add(top3);
+	}
+	
+	public MenuItem(String type, String top1, String top2) {
+		this.type = type;
+		tops.add(top1);
+		tops.add(top2);
+	}
+	
+	public Iterator<String> createIterator() {
+		return tops.iterator();
+	}
+	
+	public void addTop(String top) {
+		tops.add(top);
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public void listTops() {
+		Iterator<String> it = createIterator();
+		
+		while (it.hasNext()) {
+			String s = it.next();
+			if(it.hasNext())
+				ReceiptArea.append(s + ", ");
+			else ReceiptArea.append(s);
+		}
+	}
+	
+}
+    
+    class Menu {
+	ArrayList<MenuItem> menu;
+	
+	public Menu(ArrayList<MenuItem> menu) {
+		
+		this.menu = createMenu();
+		
+	}
+	
+	public Iterator<MenuItem> createIterator() {
+		
+		return menu.iterator();
+		
+	}
+	
+	private ArrayList<MenuItem> createMenu() {
+		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
+		MenuItem sw = new MenuItem("Sandwiches", 3.00, "Hamburger","Chicken Sandwich","Turkey Sandwich");
+		MenuItem hd = new MenuItem("Hotdogs", 2.00, "Beef Hotdog","Pork Hotdog","Turkey Hotdog");
+		MenuItem sd = new MenuItem("Salads", 3.00, "Caesar Salad","Balsamic Vinegar Salad","House Saland");
+		MenuItem chips = new MenuItem("Chips", 1.00, "Lays","Doritos","Cheetos");
+		MenuItem sides = new MenuItem("Sides", 1.00, "Fries","Celery","Apple Slices");
+		MenuItem soda = new MenuItem("Sodas", 1.00, "Dr. Pepper","Pepsi","Coca-Cola");
+		MenuItem drinks = new MenuItem("Other Drinks", 1.00, "Sweet Tea","Unsweetened Tea","Water");
+		
+		menu.add(sw);
+		menu.add(hd);
+		menu.add(sd);
+		menu.add(chips);
+		menu.add(sides);
+		menu.add(soda);
+		menu.add(drinks);
+		
+		return menu;
+	}
+	
+		
+}
+    
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -649,44 +1343,46 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Cost1_TextField;
-    private javax.swing.JTextField Cost2_TextField;
-    private javax.swing.JTextField Cost3_Textfield;
+    private javax.swing.JTextField Cost1;
+    private javax.swing.JTextField Cost2;
+    private javax.swing.JTextField Cost3;
     private javax.swing.JLabel Cost_of_Drinks;
     private javax.swing.JLabel Cost_of_Entrees;
     private javax.swing.JLabel Cost_of_Snacks;
+    private javax.swing.JTextField Drink1;
     private javax.swing.JCheckBox Drink1_Checkbox;
-    private javax.swing.JTextField Drink1_TextField;
+    private javax.swing.JTextField Drink2;
     private javax.swing.JCheckBox Drink2_Checkbox;
-    private javax.swing.JTextField Drink2_TextField;
+    private javax.swing.JTextField Drink3;
     private javax.swing.JCheckBox Drink3_Checkbox;
-    private javax.swing.JTextField Drink3_TextField;
+    private javax.swing.JTextField Drink4;
     private javax.swing.JCheckBox Drink4_Checkbox;
-    private javax.swing.JTextField Drink4_TextField;
+    private javax.swing.JTextField Entree1;
     private javax.swing.JCheckBox Entree1_Checkbox;
-    private javax.swing.JTextField Entree1_TextField;
+    private javax.swing.JTextField Entree2;
     private javax.swing.JCheckBox Entree2_Checkbox;
-    private javax.swing.JTextField Entree2_TextField;
+    private javax.swing.JTextField Entree3;
     private javax.swing.JCheckBox Entree3_Checkbox;
-    private javax.swing.JTextField Entree3_TextField;
+    private javax.swing.JTextField Entree4;
     private javax.swing.JCheckBox Entree4_Checkbox;
-    private javax.swing.JTextField Entree4_TextField;
     private javax.swing.JButton Exitbtn;
+    private javax.swing.JTextArea ReceiptArea;
     private javax.swing.JButton Recieptbtn;
     private javax.swing.JButton Resetbtn;
+    private javax.swing.JTextField Snack1;
     private javax.swing.JCheckBox Snack1_Checkbox;
-    private javax.swing.JTextField Snack1_TextField;
+    private javax.swing.JTextField Snack2;
     private javax.swing.JCheckBox Snack2_Checkbox;
-    private javax.swing.JTextField Snack2_TextField;
+    private javax.swing.JTextField Snack3;
     private javax.swing.JCheckBox Snack3_Checkbox;
-    private javax.swing.JTextField Snack3_Textfield;
     private javax.swing.JLabel SubTotal;
-    private javax.swing.JTextField Subtotal_Textfield;
+    private javax.swing.JTextField Subtotal;
     private javax.swing.JLabel Tax;
-    private javax.swing.JTextField Tax_Textfield;
-    private javax.swing.JTextField Total_TextField;
+    private javax.swing.JTextField Taxe;
     private javax.swing.JButton Totalbtn;
     private javax.swing.JLabel Totallabel;
+    private javax.swing.JTextField Totals;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -700,6 +1396,11 @@ public class Cafe_Menu_System extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
+
